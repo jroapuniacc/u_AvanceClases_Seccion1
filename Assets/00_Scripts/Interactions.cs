@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class Interactions : MonoBehaviour
@@ -8,7 +9,8 @@ public class Interactions : MonoBehaviour
         [SerializeField] private bool key1 = false;
         [Tooltip("Artistas, estas son la llave 2 del NPC")]
         [SerializeField] private bool key2 = false;
-
+        
+        [Space(10)]
         [Header("Door")]
         [SerializeField] private GameObject door; // Es el GO del pivotDoor
         private Animator animatorDoor; // Componente del Pivot Door
@@ -19,10 +21,16 @@ public class Interactions : MonoBehaviour
         [SerializeField] private float health = 100f;
         [SerializeField] private int healthDecrease = 5;
         [SerializeField] private int healthIncrease = 10;
+        
+        [Header("UI")]
+        [SerializeField] private GameObject uiDangerZone;
+
+        private IEnumerator miCorrutina;
 
         private void Start()
         {
                 animatorDoor = door.GetComponent<Animator>();
+                miCorrutina = DangerZoneDamage();
         }
 
         private void OnTriggerEnter(Collider other)
@@ -45,11 +53,14 @@ public class Interactions : MonoBehaviour
                                         isOpenDoor = true;
                                 }
                                 break;
+                        case "ZoneDanger":
+                                StartCoroutine(miCorrutina);
+                                break;
                        
                 }
         }
 
-        private void OnTriggerStay(Collider other)
+        /*private void OnTriggerStay(Collider other)
         {
                 switch (other.tag)
                 {
@@ -61,12 +72,7 @@ public class Interactions : MonoBehaviour
                                         health -= healthDecrease * Time.deltaTime;
                                         Debug.Log("Mi vida está en " + health); // Concatenar   
                                 }
-                                
-                                        
-                                         
-                                
                                 break; 
-                                
                         case "ZoneHealth":
                                 if (isOpenDoor)
                                 {
@@ -75,7 +81,7 @@ public class Interactions : MonoBehaviour
                                 }
                                 break;  
                 }
-        }
+        }*/
 
         private void OnTriggerExit(Collider other)
         {
@@ -85,7 +91,23 @@ public class Interactions : MonoBehaviour
                                 Debug.Log("Salí del collider Door");
                                 animatorDoor.SetBool("Anim_door", false);
                                 break;
+                        case "ZoneDanger":
+                                StopCoroutine(miCorrutina);
+                                break;
                 }
+        }
+
+        IEnumerator DangerZoneDamage()
+        {
+                while (health >= 0)
+                {
+                        health -= healthDecrease;
+                        uiDangerZone.SetActive(true);
+                        yield return new WaitForSeconds(1f);
+                        uiDangerZone.SetActive(false);
+                        yield return new WaitForSeconds(1f);
+                } 
+               
         }
         
 }
