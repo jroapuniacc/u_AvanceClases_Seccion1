@@ -615,10 +615,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7685423809495335312, guid: b3f0a0770fa85f1469319660278e9ebe, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1177667490}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3f0a0770fa85f1469319660278e9ebe, type: 3}
 --- !u!1001 &480503940
 PrefabInstance:
@@ -851,6 +848,51 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.38843, y: 0, z: 2.01}
   m_LocalScale: {x: 14.198808, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &734172423
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 734172425}
+  - component: {fileID: 734172424}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &734172424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734172423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ac59d4cf2ecb1740b70046cb830309f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+--- !u!4 &734172425
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734172423}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.28313, y: -0, z: 1.93535}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1242,6 +1284,7 @@ GameObject:
   m_Component:
   - component: {fileID: 936279311}
   - component: {fileID: 936279312}
+  - component: {fileID: 936279313}
   m_Layer: 0
   m_Name: PivotDoor
   m_TagString: Untagged
@@ -1287,6 +1330,27 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!65 &936279313
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936279310}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &979447378
 GameObject:
   m_ObjectHideFlags: 0
@@ -1657,30 +1721,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 165cac302b0c16b478fa11fe5cf0b642, type: 3}
---- !u!1 &1177667486 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7685423809495335312, guid: b3f0a0770fa85f1469319660278e9ebe, type: 3}
-  m_PrefabInstance: {fileID: 466382833}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1177667490
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1177667486}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23fa6fac8796edf47810deffd48d54ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  key1: 0
-  key2: 0
-  door: {fileID: 936279310}
-  health: 100
-  healthDecrease: 5
-  healthIncrease: 10
-  uiDangerZone: {fileID: 2123577128}
 --- !u!4 &1393240471 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0180f64eca248b94db8377ce8fe0a15a, type: 3}
@@ -1971,6 +2011,7 @@ GameObject:
   - component: {fileID: 1867974779}
   - component: {fileID: 1867974778}
   - component: {fileID: 1867974781}
+  - component: {fileID: 1867974782}
   m_Layer: 0
   m_Name: ZoneHealth
   m_TagString: ZoneHealth
@@ -2067,6 +2108,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 9.999999, y: 8.151818, z: 9.999999}
   m_Center: {x: 0, y: 3.6658719, z: 0}
+--- !u!114 &1867974782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1867974776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 137775e42ed54ea4bb0ccc7280fa2360, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthIncrease: 10
 --- !u!1001 &1882555061
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2611,3 +2665,4 @@ SceneRoots:
   - {fileID: 1548403185}
   - {fileID: 1990852071}
   - {fileID: 1122825495}
+  - {fileID: 734172425}

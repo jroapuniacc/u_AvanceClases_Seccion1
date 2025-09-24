@@ -13,7 +13,8 @@ public class Interactions : MonoBehaviour
         [Space(10)]
         [Header("Door")]
         [SerializeField] private GameObject door; // Es el GO del pivotDoor
-        private Animator animatorDoor; // Componente del Pivot Door
+        private Animator animatorDoor;
+        private Collider colliderDoor;// Componente del Pivot Door
         private bool isOpenDoor = false;
         
         
@@ -27,10 +28,17 @@ public class Interactions : MonoBehaviour
 
         private IEnumerator miCorrutina;
 
+        private IEnumerator miMenuCorrutina;
+        
+        [SerializeField] private int tiempoDeEsperaCorrutina = 10;
+
         private void Start()
         {
                 animatorDoor = door.GetComponent<Animator>();
-                miCorrutina = DangerZoneDamage();
+                colliderDoor = door.GetComponent<Collider>();
+                //miCorrutina = DangerZoneDamage();
+                miMenuCorrutina = MiMenuCorrutina();
+
         }
 
         private void OnTriggerEnter(Collider other)
@@ -40,6 +48,8 @@ public class Interactions : MonoBehaviour
                         case "NPC1": 
                                 key1 = true;
                                 Debug.Log("Obtuve la llave 1");
+                                colliderDoor.enabled = false;
+                                StartCoroutine(miMenuCorrutina);
                                 break;
                         case "NPC2":
                                 key2 = true;
@@ -90,6 +100,7 @@ public class Interactions : MonoBehaviour
                         case "Door":
                                 Debug.Log("Salí del collider Door");
                                 animatorDoor.SetBool("Anim_door", false);
+                                StopCoroutine(miMenuCorrutina);
                                 break;
                         case "ZoneDanger":
                                 StopCoroutine(miCorrutina);
@@ -97,7 +108,22 @@ public class Interactions : MonoBehaviour
                 }
         }
 
-        IEnumerator DangerZoneDamage()
+        // CamelCase: variable: variableCorrecta
+        // CamelCase: Método: MetodoCorrectoEstaSiQueSi
+
+
+        IEnumerator MiMenuCorrutina()
+        {
+             Debug.Log("Aparece el título");
+             Debug.Log("Play a la música");
+             yield return new WaitForSeconds(tiempoDeEsperaCorrutina);
+             Debug.Log("Aparecen los botones de juego");
+             yield return new WaitForSeconds(tiempoDeEsperaCorrutina);
+             Debug.Log("Aparece personaje en pantalla");
+        }
+        
+        
+        /*IEnumerator DangerZoneDamage()
         {
                 while (health >= 0)
                 {
@@ -108,7 +134,9 @@ public class Interactions : MonoBehaviour
                         yield return new WaitForSeconds(1f);
                 } 
                
-        }
+        }*/
+
+        
         
 }
     
