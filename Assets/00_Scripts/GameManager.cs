@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -33,7 +34,27 @@ public class GameManager : MonoBehaviour
         health += amount;
     }
 
+    public void DecreaseHealth(int amount)
+    {
+        health -= amount;
+        if (health <= 0)
+        {
+            GameOver();
+        }
+    }
+
+    public void GameOver()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Debug.Log("Game Over");
+        SceneManager.LoadScene("RestartMenu");
+    }
     
+    public void ResetHealth()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        health = 100;
+    }
 
     
 }
